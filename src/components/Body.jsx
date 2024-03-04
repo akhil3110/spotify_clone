@@ -3,6 +3,9 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentlyPlaying, setPlayerState, setSelectedPlaylist } from '../redux/slice/SongsSlice'
 import { Clock } from 'lucide-react'
+import SearchCard from './SearchCard'
+import MilliSecondsToMinutes from '../utils/MilliSecondsToMinutes'
+
 
 export default function Body() {
 
@@ -81,20 +84,26 @@ export default function Body() {
   }
 
   return (
-    <div>
+    <div className='p-5'>
       {data && (
         <div>
-          <div className="search_results">
-            {data.tracks.items.map(({ id, name, artists, album, duration_ms, uri, track_number }) => {
+          <div className="search_results flex flex-wrap flex-row gap-x-5 gap-y-2" >
+            {data.tracks.items.map(({ id, name, artists, album, }) => {
               return (
-                <div key={id} className="search_result">
-                  <div className="image">
+                <div key={id} className="search_result cursor-pointer">
+                   <SearchCard 
+                      onClick={() => playSong(id,name,artists.map((artist) => artist.name),album.images[2].url,album.uri)}
+                      name={name}
+                      image={album.images[2].url}
+                      artists = {artists.map((artist) => artist.name).join(", ")}
+                    />
+                  {/* <div className="image">
                     <img src={album.images[2].url} alt="album" />
                   </div>
                   <div className="info">
                     <span className="name">{name}</span>
                     <span>{artists.map((artist) => artist.name).join(", ")}</span>
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
@@ -152,7 +161,7 @@ export default function Body() {
                       <span>{album}</span>
                     </div>
                     <div className="col col-span-1">
-                      <span>{duration}</span>
+                      <span>{MilliSecondsToMinutes(duration)}</span>
                     </div>
                   </div>
                 )

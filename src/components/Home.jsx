@@ -49,11 +49,11 @@ export default function Home() {
   return (
     <div className=' h-screen w-full   grid grid-cols-10'>
         <div className='col-span-2 sticky top-0 '>
-            <div className=' h-screen sticky top-0'>
+            <div className='hidden md:block h-screen sticky top-0'>
                 <SideBar />    
             </div>
         </div>
-        <div className=' bg-slate-800/10 col-span-8 bg-gradient-to-b from-black/60 to-black/85'>
+        <div className=' bg-slate-800/10 col-span-10  md:col-span-8 bg-gradient-to-b from-black/60 to-black/85'>
             <div className="body sticky top-0  " ref={bodyRef} onScroll={bodyScrolled}>
                 <Navbar navBackground={navBackground} />    
             </div>
