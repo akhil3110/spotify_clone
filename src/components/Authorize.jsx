@@ -4,7 +4,7 @@ export default function Authorize() {
 
     const handleClick = () => {
         const client_id = "0d3744c5b4094b278635aa41c325b876";
-        const redirect_uri = "http://localhost:5173/";
+        const redirect_uri = "https://spotify-clone-ng5ff1in9-akhil3110.vercel.app/";
 
         const scope = [
             "user-read-private",
